@@ -19,6 +19,7 @@ class NetworkManager {
                 .mapError {$0}
                 .tryMap { element -> Data in
                     guard let httpResponse = element.response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                        print("bad Request")
                         throw URLError(.badServerResponse)
                     }
                     return element.data
